@@ -16,4 +16,4 @@ Aspects that Went Well:
 I was able to pick up the languages faster than I thought. I think Ali’s software design class helped a lot with my understanding in programming and I was glad I could apply that in this assignment. I used to struggle a lot with programming. When familiarizing myself with JavaScript, I googled most of it and looked at other A-frame project that people have posted. I also reached out to you, Anthony, when I had some issues and that was a great help! I feel a lot more comfortable HTML and JavaScript now.
 Overall, I am pretty happy with how my project turned out as a first A-Frame assignment. I was worried I would struggle a lot with this, but it was not as bad as I thought. I feel like a learned some useful skills that I will definitely apply in future projects like the final assignment. 
 
-Here is the link to my GIthub repositor: https://github.com/vickeychee/IMD3901-Assignment2.git
+Here is the link to my Github repository: https://github.com/vickeychee/IMD3901-Assignment2.git
