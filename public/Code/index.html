@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Vickey Chee A2</title>
+      <meta name="description" content="Day/Night Experience">
+
+      <!--linking reference files-->
+      <script src="/js/aframe.min.js"></script>
+      <script src="/js/sun-rotation.js"></script>
+      <script src="/js/add-cloud.js"></script>
+      <script src="/js/del-cloud.js"></script>
+      <script src="/js/start-button.js"></script>
+      <link rel="stylesheet" href="/css/user-gesture.css">
+    </head>
+
+    <body>
+      <!--loading in user gesture buttons-->  
+      <div id="user-gesture-overlay">
+        <div class="center">
+          <button id="user-gesture-button" onclick="startExperience();">Start Experience</button>
+          <!-- loading gif from: https://www.behance.net/gallery/31234507/Open-source-Loading-GIF-Icons-Vol-1-->
+          <img id="loading-animation" src="/assets/loader_animation.gif">
+        </div>
+      </div>
+
+      <!-- A-Frame scene-->
+      <a-scene start-experience>
+
+
+            <!--adding camera to scene with mouse controls attached-->
+            <a-entity camera wasd-controls look-controls position="0 1.6 0"> 
+                <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+            </a-entity>
+            
+            <!--adding the default lighting to add castshadows-->
+            <a-entity light="type: ambient; color: #BBB"></a-entity>
+            <a-entity light="type: directional; color: #FFF; intensity: 0.6; castShadow: true;" position="-0.5 1 1"></a-entity>
+
+            <a-assets>
+                <!--bg music is from https://www.youtube.com/watch?v=-VUGZoKrBsQ-->
+                <!--click sound is from https://www.youtube.com/watch?v=nK71NEluAqA-->
+                <audio id="bg-music" src="/assets/bg-music.mp3" preload="auto" crossorigin="anonymous"></audio>
+                <audio id="click-sound" src="/assets/click-sound.mp3" preload="auto" crossorigin="anonymous"></audio>
+            </a-assets>
+            <a-entity class="ambient-music" sound="src:#bg-music; autoplay:false;"></a-entity>
+
+            <!--changing sky color-->
+            <a-sky id ="sky" color ="#fcc5b1"></a-sky>
+
+            <!--adding a floor-->
+            <a-entity id="floor"
+                        position="0 0 -8.0"
+                        rotation="-90 0 0"
+                        scale="40 30 30"
+                        geometry="primitive:plane; width:1.0; height:1.0;" 
+                        material="color:#aa5e47;">
+            </a-entity>
+
+            <!--adding sun and moon-->
+            <a-entity id="sun-rotation" sun-rotation ="duration:20000;"> 
+                <a-sphere id="sun"
+                            position="-8.0 0 -24.0"
+                            radius="2.0"
+                            material="color:#fff99f" shadow></a-sphere>
+                        
+                <a-sphere id="moon"
+                            position="8.0 -3.5 -24.0"
+                            radius="1.0"
+                            material="color:#ffffff" shadow></a-sphere>
+            </a-entity>
+
+            <!--<a-entity id="mountain-group" position="-14 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron" material= "color:#91433f"></a-entity>-->
+            <a-entity id="mountain-group" >
+                <!--creating mountains-->
+                <a-entity class="mountain" position="-14 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron" material= "color:#91433f"></a-entity>
+                <a-entity class="mountain" position="-12 0 -18" scale=" 1.1 1.9 0.7" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-10 0 -18" scale=" 1.39 1.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-8 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-5.9 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-4.5 0 -18" scale=" 0.98 1.6 -0.76" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-3.2 0 -18" scale=" 0.87 2.5 -1.2" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="-1.5 0 -18" scale=" 1.64 2.3 1.3" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="0.14 0 -18" scale=" 1.48 2.8 0.98" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="2.4 0 -18" scale=" 1.13 3.2 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="3.94 0 -18" scale=" 1.05 2.6 0.4" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="5.9 0 -18" scale=" 1.5 2.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="7.7 0 -18" scale=" 0.73 2 -1.2" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="8.9 0 -18" scale=" 0.95 1.6 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="10.6 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+                <a-entity class="mountain" position="12.4 0 -18" scale=" 1.8 2.3 1" geometry="primitive: octahedron;" material= "color:#91433f;"></a-entity>
+            </a-entity>
+
+            <!--adding cloud group-->
+            <a-entity id="cloud-group" visible="false">
+                <a-entity class ="interactive" position="-15 10 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:-15 10 -17.0; to: 33 10 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="-11 7 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:-11 7-17.0; to: 33 7 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="-6.5 11 -17.0" geometry="primitive:box; depth:1; height:0.6; width:3;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:-6.5 11 -17.0; to: 33 11 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+                
+                <a-entity class ="interactive" position="-1 7 -17.0" geometry="primitive:box; depth:1; height:0.6; width:4;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:-1 7 -17.0; to: 33 7 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="0 9 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:0 9 -17.0; to: 33 9 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="5 6.2 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:5 6.2 -17.0; to: 33 6.2 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+                
+                <a-entity class ="interactive" position="7 10 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:7 10 -17.0; to: 33 10 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="12 8 -17.0" geometry="primitive:box; depth:1; height:0.6; width:4;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:12 8 -17.0; to: 33 8 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+
+                <a-entity class ="interactive" position="16.5 9.5 -17.0" geometry="primitive:box; depth:1; height:0.6; width:2;" material= "color:#ffffff; opacity:0.6;" 
+                            animation__click="property: position; from:16.5 9.5 -17.0; to: 33 9.5 -17.0; easing: linear; loop: true; startEvents:click; dur: 85000;"shadow></a-entity>
+            </a-entity>
+
+            <!--adding buttons-->
+            <a-entity id="buttons">
+                <!--red button (changing sunset)-->
+                <a-entity class="button interactive" sun-rotation="duration:18000;"  position="-0.5 0.6 -3.5" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(255, 0, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200"
+                            animation__click="property:position; from:-0.5 0.55 -3.5; to:-0.5 0.6 -3.5; startEvents:click; dur:300"
+                            sound="src: #click-sound; on:click"shadow></a-entity>
+                
+                <!--green button (add clouds)-->
+                <a-entity class="button interactive" add-cloud="duration:60000;" position="0 0.6 -3.5" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:#00FF00"
+                            animation__mouseenter="property:material.color; type:color; to:#009900; startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:#00FF00; startEvents:mouseleave; dur:200"
+                            animation__click="property:position; from:0 0.55 -3.5; to:0 0.6 -3.5; startEvents:click; dur:300"
+                            sound="src: #click-sound; on:click" shadow></a-entity>
+
+                <!--yellow button (delete clouds)-->
+                <a-entity class="button interactive" del-cloud="duration:60000;" position="0.5 0.6 -3.5" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:#FFFF33"
+                            animation__mouseenter="property:material.color; type:color; to:#FF9900; startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:#FFFF33; startEvents:mouseleave; dur:200"
+                            animation__click="property:position; from:0.5 0.55 -3.5; to:0.5 0.6 -3.5; startEvents:click; dur:300"
+                            sound="src: #click-sound; on:click" shadow></a-entity>
+
+                <!--platform for buttons to stand on-->
+                <a-entity position="0 0.3 -3.5" geometry="primitive:box; width:1.6; depth:0.6; height:0.6;" material="color:white" shadow></a-entity>
+            </a-entity>
+
+            <!--button  text labels-->
+            <a-entity text="value:Start Sunset; color:black; font:roboto; width:0.3; align:center; anchor:left; baseline:top; wrapCount:6;" position="-0.64 0.5 -3.2" ></a-entity>
+            <a-entity text="value:Add Clouds; color:black; font:roboto; width:0.3; align:center; anchor:left; baseline:top; wrapCount:6;" position="-0.145 0.5 -3.2" ></a-entity>
+            <a-entity text="value:Delete Clouds; color:black; font:roboto; width:0.3; align:center; anchor:left; baseline:top; wrapCount:6;" position="0.34 0.5 -3.2" ></a-entity>
+        </a-scene>
+    </body>
+</html>
